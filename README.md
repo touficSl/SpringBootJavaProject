@@ -6,7 +6,8 @@ This project contains some of my experience in Spring boot
 This is a microservice using Java Spring boot Hibernate
 
 ## Installtion and softwares needed
-### - 
+### - Eclipse or any other IDE similiar to it.
+### - MySql Server
 
 
 ## Project Points 
