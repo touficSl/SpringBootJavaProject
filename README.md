@@ -15,5 +15,5 @@ This project is a microservice using Java Spring Boot.
 - Build Multi-Tenant Application with Authentication
 - Upload Images
 - Session Timeout
-- Calling other micro services
+- Calling other microservices
 - Authentication and Roles
