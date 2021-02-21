@@ -16,4 +16,4 @@ This project is a microservice using Java Spring Boot.
 - Upload Images
 - Session Timeout
 - Calling other microservices
-- Authentication and Roles
+- Authentication with authorities
