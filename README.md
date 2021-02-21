@@ -1,9 +1,9 @@
 # Spring-Boot-Java-Project
-This project contains some of my experience in Spring boot
+This project contains some of my experience in Spring boot.
 
 
 ## Introduction
-This is a microservice using Java Spring boot Hibernate
+This is a microservice using Java Spring Boot
 
 ## Installtion and softwares needed
 ### - Eclipse or any other IDE similiar to it
