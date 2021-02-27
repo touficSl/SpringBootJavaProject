@@ -1,4 +1,4 @@
-# Spring-Boot-Java-Project
+# SpringBootJavaProject
 This project contains some of my experience in Spring boot.
 
 
