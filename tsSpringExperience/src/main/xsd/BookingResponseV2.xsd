@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+
+	<xs:simpleType name="Amount">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="BookingResponse">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element maxOccurs="unbounded" name="failure" >
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="comment" type="xs:string" />
+						</xs:sequence>
+						<xs:attribute name="type" type="xs:string" use="required" />
+						<xs:attribute name="message" type="xs:string" use="optional" />
+					</xs:complexType>
+				</xs:element>  
+				<xs:sequence>
+					<xs:element name="success" type="xs:string" />
+					<xs:element name="bookings" minOccurs="0" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="booking" minOccurs="0" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="customer" >
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="contact">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="address" minOccurs="0">
+																		<xs:complexType>
+																			<xs:simpleContent>
+																				<xs:extension base="xs:string">
+																					<xs:attribute name="postalCode" type="xs:string" use="optional" />
+																					<xs:attribute name="city" type="xs:string" use="optional" />
+																					<xs:attribute name="country" type="xs:string" use="optional" />									
+																				</xs:extension>
+																			</xs:simpleContent>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+																<xs:attribute name="email" type="xs:string" use="required" />
+																<xs:attribute name="phone" type="xs:string" use="optional" />
+																<xs:attribute name="fax" type="xs:string" use="optional" />
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="creditCard" minOccurs="0" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:attribute name="number" type="xs:string" use="optional" />
+																<xs:attribute name="expiryDate" type="xs:gYearMonth" use="optional" />
+																<xs:attribute name="cardHolder" type="xs:string" use="optional" />
+																<xs:attribute name="cardType" use="optional" >
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:enumeration value="Visa" />
+																			<xs:enumeration value="AmericanExpress" />
+																			<xs:enumeration value="MasterCard" />
+																			<xs:enumeration value="JCB" />
+																			<xs:enumeration value="Dinner" />
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:attribute>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="comment" type="xs:string" minOccurs="0" />
+													</xs:sequence>
+													<xs:attribute name="firstName" type="xs:string" use="required" />
+													<xs:attribute name="lastName" type="xs:string" use="required" />
+													<xs:attribute name="title" type="xs:string" use="optional" />
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="distributor" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="comment" minOccurs="0" maxOccurs="unbounded">							  
+															<xs:complexType>									
+																<xs:simpleContent>
+																	<xs:extension base="xs:string">
+																		<xs:attribute name="name" type="xs:string" />
+																	</xs:extension>
+																</xs:simpleContent>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="rooms" >
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="room" minOccurs="0" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="stays">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="stay" minOccurs="0" maxOccurs="unbounded">
+																					<xs:complexType>
+																						<xs:attribute name="date" type="xs:date" use="required" />
+																						<xs:attribute name="quantity" type="xs:int" use="required" />
+																						<xs:attribute name="unitPrice" type="xs:decimal" use="required" />
+																						<xs:attribute name="rateCode" type="xs:string"  use="optional"/>
+																					</xs:complexType>
+																				</xs:element>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																	<xs:element name="guests">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="guest" minOccurs="0" maxOccurs="unbounded">
+																					<xs:complexType>
+																						<xs:attribute name="firstName" type="xs:string" use="required" />
+																						<xs:attribute name="lastName" type="xs:string" use="required" />
+																						<xs:attribute name="title" use="optional" >
+																							<xs:simpleType>
+																								<xs:restriction base="xs:string">
+																									<xs:enumeration value="Mr" />
+																									<xs:enumeration value="Mrs" />
+																									<xs:enumeration value="Miss" />
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:attribute>
+																						<xs:attribute name="ageRange" use="optional" >
+																							<xs:simpleType>
+																								<xs:restriction base="xs:int">
+																									<xs:enumeration value="10" />
+																									<xs:enumeration value="8" />
+																									<xs:enumeration value="6" />
+																								</xs:restriction>
+																							</xs:simpleType>
+																						</xs:attribute>
+																						<xs:attribute name="birthDate" type="xs:date" use="optional" />
+																					</xs:complexType>
+																				</xs:element>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+																<xs:attribute name="id" type="xs:string" use="required" />
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="id" type="xs:string" use="required" />
+										<xs:attribute name="action" use="required" >
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Create" />
+													<xs:enumeration value="Modify" />
+													<xs:enumeration value="Cancel" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="currency" type="xs:string" use="required" />
+										<xs:attribute name="date" type="xs:dateTime" use="required" />
+										<xs:attribute name="totalAmount" type="Amount" use="required" />			  
+										<xs:attribute name="dueAmount" type="Amount" use="required" />
+										<xs:attribute name="paidAmount" type="Amount" use="required" />
+										<xs:attribute name="payableAmount" type="Amount" use="required" />
+										<xs:attribute name="origin" type="xs:string" use="optional" />
+										<xs:attribute name="paxCount" type="xs:int" use="required" />
+										<xs:attribute name="adultCount" type="xs:int" use="optional" />
+										<xs:attribute name="infantCount" type="xs:int" use="optional" />
+										<xs:attribute name="childCount" type="xs:int" use="optional" />
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="hotelId" type="xs:string" />
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>        
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

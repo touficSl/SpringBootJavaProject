@@ -17,3 +17,4 @@ This project is a microservice using Java Spring Boot.
 - Session Timeout
 - Calling other microservices
 - Authentication with authorities
+- Error handling

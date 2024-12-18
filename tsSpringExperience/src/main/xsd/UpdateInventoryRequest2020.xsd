@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema attributeFormDefault="unqualified" blockDefault="" elementFormDefault="qualified" version="1.0.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="UpdateInventoryRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="authentication">
+					<xs:complexType>
+						<xs:attribute name="login" type="xs:string" />
+						<xs:attribute name="password" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="inventoryUpdate">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="room" minOccurs="1" maxOccurs="unbounded" >
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="inventory">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="availability" minOccurs="1" maxOccurs="unbounded" >
+														<xs:complexType>
+															<xs:attribute type="xs:integer" name="quantity" use="required"/>
+															<xs:attribute type="xs:date" name="from" use="required"/>
+															<xs:attribute type="xs:date" name="to" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="rate" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="planning" minOccurs="1" maxOccurs="unbounded" >
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="occupancy" minOccurs="0" maxOccurs="unbounded" >
+																	<xs:complexType>
+																		<xs:attribute name="personCount" type="xs:int" use="optional" />
+																		<xs:attribute name="adultCount" type="xs:int" use="optional" />
+																		<xs:attribute name="childCount" type="xs:int" use="optional" />
+																		<xs:attribute name="unitPrice" type="xs:decimal" use="optional" />
+																		<xs:attribute name="isClosed" type="xs:boolean" use="required" />
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute type="xs:date" name="from" use="required"/>
+															<xs:attribute type="xs:date" name="to" use="required"/>
+															<xs:attribute name="unitPrice" type="xs:decimal" use="optional" />
+															<xs:attribute name="minimumStay" type="xs:int" use="optional" />
+															<xs:attribute name="maximumStay" type="xs:int" use="optional" />
+															<xs:attribute name="noArrival" type="xs:boolean" use="optional" />
+															<xs:attribute name="noDeparture" type="xs:boolean" use="optional" />
+															<xs:attribute name="isClosed" type="xs:boolean" use="optional" />
+															<xs:attribute name="availability" type="xs:int" use="optional" />
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="currency" type="xs:string" use="optional" />
+												<xs:attribute name="rateCode" type="xs:string" use="required" />
+												<xs:attribute name="rateName" type="xs:string" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="id" type="xs:string" use="required" /> 
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="hotelId" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
